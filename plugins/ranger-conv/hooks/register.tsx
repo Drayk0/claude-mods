@@ -55,6 +55,22 @@ const REGLES_MIEUX =
   "et toutes ses demandes ; n'ajoute aucune demande ni supposition, et ne réponds pas à la demande. " +
   "Tu n'as pas d'outils : réponds tout de suite, avec seulement le texte réécrit, sans guillemets ni commentaire."
 
+// Mieux tourne sur Haiku (moins cher) avec seulement la fin de la conversation, pas toute.
+const CONTEXTE_MESSAGES = 12
+const CONTEXTE_CARACTERES = 12000
+
+async function finDeConversation($: EngineInterface) {
+  const messages = await $.session.messages({ last: CONTEXTE_MESSAGES })
+  if ('deny' in messages) {
+    return ''
+  }
+  return messages
+    .filter(m => m.text.trim())
+    .map(m => `${m.role === 'user' ? 'Utilisateur' : 'Claude'} : ${m.text.trim()}`)
+    .join('\n\n')
+    .slice(-CONTEXTE_CARACTERES)
+}
+
 const deplie = atom({ plugin: 'ranger-conv', key: 'deplie' } as const, false)
 const REPLI_MS = 8000
 
@@ -91,11 +107,12 @@ async function mieux($: EngineInterface) {
   $.ui.toast('Réécriture…')
   try {
     const brouillon = `L'utilisateur a écrit ce brouillon dans la case de saisie, pas encore envoyé :\n<brouillon>\n${text}\n</brouillon>\n`
-    // Le fork relit la conversation (en cache) pour lever les ambiguïtés ; sans conversation, un appel simple.
-    let r = await $.model.fork({ prompt: brouillon + 'En tenant compte de cette conversation, ' + REGLES_MIEUX })
-    if (!r.isAnswered && r.reason === 'nothing-to-fork') {
-      r = await $.model.complete({ model: 'sonnet', prompt: brouillon + REGLES_MIEUX, maxTokens: 2000, timeoutMs: 60000 })
-    }
+    // La fin de la conversation aide à lever les ambiguïtés du brouillon.
+    const contexte = await finDeConversation($)
+    const prompt = contexte
+      ? `Fin de la conversation en cours :\n<conversation>\n${contexte}\n</conversation>\n${brouillon}En tenant compte de cette conversation, ${REGLES_MIEUX}`
+      : brouillon + REGLES_MIEUX
+    const r = await $.model.complete({ model: 'haiku', prompt, maxTokens: 2000, timeoutMs: 60000 })
     if (!r.isAnswered) {
       $.ui.toast(`Réécriture impossible (${r.reason})`)
       return

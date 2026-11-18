@@ -24,13 +24,20 @@ const appli = (on: Parameters<Parameters<typeof test>[1]>[1], brouillon: string)
   return { envoyes, remplis }
 }
 
-test('Mieux remplace le brouillon par la réécriture', async ($, on) => {
+test('Mieux remplace le brouillon par la réécriture de Haiku, avec la fin de la conversation', async ($, on) => {
   const { remplis } = appli(on, 'fai le truc stp')
-  on('model.fork', () => ({ value: { isAnswered: true, text: ' Fais le truc, s’il te plaît. ', usage: {} } }))
+  const demandes: { model: string; prompt: string }[] = []
+  on('session.messages', () => ({ value: [{ role: 'user', text: 'le truc = la note', toolUses: [] }] }))
+  on('model.complete', (_, e) => {
+    demandes.push({ model: e.model, prompt: String(e.prompt) })
+    return { value: { isAnswered: true, text: ' Fais le truc, s’il te plaît. ', usage: {} } }
+  })
 
   const ui = await $.ui.mount(PIED)
   await ui.press({ key: 'mieux' })
   expect(remplis).toEqual(['Fais le truc, s’il te plaît.'])
+  expect(demandes.map(d => d.model)).toEqual(['haiku'])
+  expect(demandes[0].prompt).toContain('Utilisateur : le truc = la note')
   await ui.unmount()
 })
 

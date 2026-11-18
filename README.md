@@ -2,7 +2,7 @@
 
 Un mod pour l'onglet Code de l'appli Claude de bureau (Mac ou Windows), sur la ligne du modèle, sous la saisie :
 
-- **Mieux** réécrit ton brouillon (fautes, clarté) sans l'envoyer.
+- **Mieux** réécrit ton brouillon (fautes, clarté) sans l'envoyer, avec Haiku pour consommer peu.
 - **⋯** déplie **Retiens** (Claude retient une consigne), **Vider** (vide la conversation) et **Archiver** (renomme puis archive).
 - Aussi en commandes : `/retiens [texte]`, `/vider`, `/archiver`.
 

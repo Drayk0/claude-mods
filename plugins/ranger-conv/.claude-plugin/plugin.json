@@ -1,1 +1,1 @@
-{ "name": "ranger-conv", "version": "0.5.2", "description": "Ligne du modèle : Mieux, et ⋯ qui déplie Retiens, Vider, Archiver ; commandes /retiens, /vider, /archiver", "types": "./types/index.d.ts" }
+{ "name": "ranger-conv", "version": "0.6.0", "description": "Ligne du modèle : Mieux, et ⋯ qui déplie Retiens, Vider, Archiver ; commandes /retiens, /vider, /archiver", "types": "./types/index.d.ts" }
