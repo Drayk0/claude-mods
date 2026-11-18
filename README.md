@@ -14,7 +14,7 @@ Deux mods pour l'onglet Code de l'appli Claude de bureau (Mac ou PC).
 2. Dans l'appli Claude, onglet Code, ouvre une conversation et colle :
 
    ```text
-   Ajoute le catalogue de plugins GitHub <PROPRIETAIRE>/claude-mods (dépôt privé, je suis connecté à GitHub avec gh), puis installe ranger-conv et themes-partout pour mon utilisateur.
+   Ajoute le catalogue de plugins GitHub Drayk0/claude-mods (dépôt privé, je suis connecté à GitHub avec gh), puis installe ranger-conv et themes-partout pour mon utilisateur.
    ```
 
    Si Claude dit que le dépôt est introuvable : installe GitHub CLI et lance `gh auth login`, puis redemande.
