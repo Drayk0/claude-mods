@@ -1,0 +1,16 @@
+{
+  "name": "claude-mods",
+  "owner": { "name": "claude-mods" },
+  "plugins": [
+    {
+      "name": "ranger-conv",
+      "source": "./plugins/ranger-conv",
+      "description": "Ligne du modèle : Mieux, et ⋯ qui déplie Retiens, Vider, Archiver ; /retiens, /vider, /archiver"
+    },
+    {
+      "name": "themes-partout",
+      "source": "./plugins/themes-partout",
+      "description": "Fonds animés de theme-examples (Anthropic), un seul thème pour toutes les sessions ; /custom-theme, /fireworks"
+    }
+  ]
+}
