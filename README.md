@@ -10,16 +10,14 @@ Deux mods pour l'onglet Code de l'appli Claude de bureau (Mac ou PC).
 
 ## Installer
 
-1. Accepte l'invitation au dépôt GitHub (mail ou github.com/notifications).
-2. Dans l'appli Claude, onglet Code, ouvre une conversation et colle :
+1. Dans l'appli Claude, onglet Code, ouvre une conversation et colle :
 
    ```text
-   Ajoute le catalogue de plugins GitHub Drayk0/claude-mods (dépôt privé, je suis connecté à GitHub avec gh), puis installe ranger-conv et themes-partout pour mon utilisateur.
+   Ajoute le catalogue de plugins GitHub Drayk0/claude-mods, puis installe ranger-conv et themes-partout pour mon utilisateur.
    ```
 
-   Si Claude dit que le dépôt est introuvable : installe GitHub CLI et lance `gh auth login`, puis redemande.
-3. Quitte l'appli complètement (⌘Q sur Mac, clic droit sur l'icône > Quitter sur PC) et rouvre-la.
-4. Les boutons et les commandes apparaissent après le premier message d'une **nouvelle** conversation.
+2. Quitte l'appli complètement (⌘Q sur Mac, clic droit sur l'icône > Quitter sur PC) et rouvre-la.
+3. Les boutons et les commandes apparaissent après le premier message d'une **nouvelle** conversation.
 
 Si tu as déjà le plugin `theme-examples` d'Anthropic, désinstalle-le (en local et sur claude.ai/plugins) : il prend les mêmes commandes que themes-partout.
 
